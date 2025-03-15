@@ -1,13 +1,13 @@
 import React from 'react';
-
-function Greeting() {
-    return <h1>Welcome to the Pet Store!</h1>;
-}
+import Greeting from './components/Greeting'; 
+import Footer from './components/Footer';  
 
 function App() {
     return (
         <div>
-            <Greeting />
+            <Greeting /> 
+            {/* <Footer />  */}
+            <Footer year={2025} message="We appreciate your support!" /> 
         </div>
     );
 }
