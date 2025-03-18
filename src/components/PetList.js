@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PetCard from './PetCard';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
+
 function PetList() {
     const [pets, setPets] = useState([]);
     const [error, setError] = useState('');
+    
 
     useEffect(() => {
         console.log("Fetching pets data...");
-        axios.get('http://localhost:9900/api/pets')
+        axios.get(`${apiUrl}/pets`)
             .then(res => {
                 console.log("result", res);
                 setPets(res.data);
@@ -17,7 +21,7 @@ function PetList() {
                 console.error("Error fetching pets data:", err);
                 setError(err.message);
             });
-    }, []); // Empty dependency array
+    }, []);
 
     console.log("PetList component rendered");
 
