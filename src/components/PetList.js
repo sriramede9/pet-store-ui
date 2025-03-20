@@ -1,36 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PetCard from './PetCard';
-
-const apiUrl = process.env.REACT_APP_API_URL;
-
+import PetDetails from './PetDetails';
 
 function PetList() {
     const [pets, setPets] = useState([]);
-    const [error, setError] = useState('');
-    
+    const [selectedPet, setSelectedPet] = useState(null);
 
     useEffect(() => {
-        console.log("Fetching pets data...");
-        axios.get(`${apiUrl}/pets`)
+        axios.get(`${process.env.REACT_APP_API_URL}/pets`)
             .then(res => {
-                console.log("result", res);
                 setPets(res.data);
             })
             .catch(err => {
-                console.error("Error fetching pets data:", err);
-                setError(err.message);
+                console.error('Error fetching pets:', err);
             });
     }, []);
 
-    console.log("PetList component rendered");
+    const handlePetClick = (pet) => {
+        setSelectedPet(pet);
+    };
 
     return (
-        <div className="pet-list">
-            {error && <p className="text-danger">{error}</p>}
+        <div>
             {pets.map(pet => (
-                <PetCard key={pet.id} pet={pet} />
+                <PetCard key={pet.id} pet={pet} onClick={() => handlePetClick(pet)} />
             ))}
+            {selectedPet && <PetDetails pet={selectedPet} />}
         </div>
     );
 }
