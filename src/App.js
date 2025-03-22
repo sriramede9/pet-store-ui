@@ -2,17 +2,16 @@ import React from 'react';
 import Greeting from './components/Greeting'; 
 import PetList from './components/PetList';  
 import Footer from './components/Footer';  
+import PetDetails from './components/PetDetails';
+import { Routes, Route } from 'react-router-dom';
 
 
 function App() {
     return (
-        <div>
-            <Greeting /> 
-            {/* <AddPetForm /> */}
-            <PetList />
-            <Footer year={2025} message="We appreciate your support!" /> 
-            {/* <Click /> */}
-        </div>
+        <Routes>
+        <Route path="/" element={<PetList />} />
+        <Route path="/pet/:id" element={<PetDetails />} />
+        </Routes>
     );
 }
 
