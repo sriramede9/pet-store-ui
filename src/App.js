@@ -1,16 +1,14 @@
 import React from 'react';
-import Greeting from './components/Greeting'; 
-import PetList from './components/PetList';  
-import Footer from './components/Footer';  
-import PetDetails from './components/PetDetails';
-import { Routes, Route } from 'react-router-dom';
 
+import { Routes, Route } from 'react-router-dom';
+import ListGroup from './components/ListGroup';
 
 function App() {
     return (
         <Routes>
-        <Route path="/" element={<PetList />} />
-        <Route path="/pet/:id" element={<PetDetails />} />
+                {/* <Route path="/" element={<><PetList /><Footer year={2025} /></>} />
+                <Route path="/pet/:id" element={<PetDetails />} /> */}
+                <Route path="/" element={<ListGroup />} />
         </Routes>
     );
 }
